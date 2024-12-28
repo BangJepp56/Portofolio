@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Jefri Agiansyah - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 46, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                gap: 1rem;
+                justify-content: space-around;
+            }
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4a90e2, #8e44ad);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        #about {
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(74, 144, 226, 0.1) 0%, transparent 60%);
+            padding-top: 6rem;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #00008B, #00FFFF) border-box;
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @media (max-width: 480px) {
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #4a90e2, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .description {
+                font-size: 1rem;
+            }
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .skill-category h3 {
+            color: #4a90e2;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .skill-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .skill-item {
+            text-align: center;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #4a90e2;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-icon {
+            background: linear-gradient(45deg, #4a90e2, #8e44ad);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4a90e2, #8e44ad);
+            border-radius: 3px;
+            transform-origin: left;
+            animation: progressAnimation 1.5s ease-out forwards;
+        }
+
+        @keyframes progressAnimation {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #4a90e2;
+        }
+
+        .service-card h3 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: #4a90e2;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-content a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-content a:hover {
+            color: #8e44ad;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        .contact-item h3 {
+            color: #4a90e2;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <img src="pp.jpg" alt="M. Jefri Agiansyah" class="profile-img">
+        <h1>M. Jefri Agiansyah</h1>
+        <p class="description">Saya adalah seorang desainer grafis, editor video, dan web developer yang bersemangat menciptakan karya-karya kreatif dan fungsional. Tujuan saya adalah membantu klien mengubah ide mereka menjadi visual dan pengalaman digital yang memukau.</p>
+    </section>
+
+    <section id="skills">
+        <h1>Skills</h1>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Web Development</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="skill-name">HTML</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.9);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div class="skill-name">CSS</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.85);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="skill-name">JavaScript</antArtifact>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.8);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-php"></i>
+                        </div>
+                        <div class="skill-name">PHP</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.85);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-laravel"></i>
+                        </div>
+                        <div class="skill-name">Laravel</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.8);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <div class="skill-name">Filament</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.75);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Mobile Development</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-flutter"></i>
+                        </div>
+                        <div class="skill-name">Flutter</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.8);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="skill-name">Dart</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.75);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Design Tools</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fab fa-wordpress"></i>
+                        </div>
+                        <div class="skill-name">WordPress</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.85);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-pencil-ruler"></i>
+                        </div>
+                        <div class="skill-name">UI/UX</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.8);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="skill-name">Photoshop</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.9);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="skill-name">Canva</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.85);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Other Tools</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div class="skill-name">Word</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.9);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <div class="skill-name">Excel</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.85);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="skill-name">phpMyAdmin</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.8);"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="skill-name">Alight Motion</div>
+                        <div class="skill-progress">
+                            <div class="progress-bar" style="transform: scaleX(0.75);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h1>Services</h1>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-palette service-icon"></i>
+                <h3>Desain Grafis</h3>
+                <p>Menciptakan desain visual yang menarik dan profesional untuk berbagai kebutuhan bisnis dan personal.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-video service-icon"></i>
+                <h3>Editing Video</h3>
+                <p>Menghasilkan konten video berkualitas tinggi dengan editing profesional dan efek visual menarik.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-code service-icon"></i>
+                <h3>Web Development</h3>
+                <p>Membangun website modern dan responsif dengan teknologi terkini sesuai kebutuhan klien.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h1>Portfolio</h1>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="LandingPage.png" alt="Landing Page Project">
+                <div class="portfolio-content">
+                    <h3>Landing Page Project</h3>
+                    <p>Modern landing page dengan desain responsif dan animasi menarik. Dibuat menggunakan teknologi terkini untuk pengalaman pengguna yang optimal.</p>
+                    <a href="https://jep-point.vercel.app" target="_blank">
+                        Visit Website <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h1>Contact</h1>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-envelope contact-icon"></i>
+                <h3>Email</h3>
+                <a href="mailto:jeppoint@gmail.com">jeppoint@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-instagram contact-icon"></i>
+                <h3>Instagram</h3>
+                <a href="https://instagram.com/jepp_aee" target="_blank">@jepp_aee</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-whatsapp contact-icon"></i>
+                <h3>WhatsApp</h3>
+                <a href="https://wa.me/082371191955" target="_blank">082371191955</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
