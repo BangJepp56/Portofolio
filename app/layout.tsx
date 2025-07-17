@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
+import SplashCursor from '@/components/ui/SplashCursor'
+import Dock from '@/components/ui/Dock'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -37,8 +39,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className={`${poppins.className} bg-dark-900 text-dark-50 antialiased`}>
+      <body className={`${poppins.className} bg-dark-900 text-dark-50 antialiased cursor-none`}>
+        <SplashCursor />
         {children}
+        <Dock />
       </body>
     </html>
   )
