@@ -1,98 +1,87 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { MapPin, Calendar, Star } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-react';
 
-const ProfileCard = () => {
+export default function ProfileCard() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, rotateY: -15 }}
-      animate={{ opacity: 1, y: 0, rotateY: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="relative max-w-sm mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative group"
     >
-      <div className="glass rounded-3xl p-8 border border-white/20 backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 shadow-2xl">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 rounded-3xl overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/20 to-transparent rounded-full blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-full blur-xl" />
-        </div>
-
-        <div className="relative z-10">
-          {/* Profile Image */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+      
+      <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-2xl">
+        {/* Profile Image */}
+        <div className="flex justify-center mb-6">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-            className="relative w-24 h-24 mx-auto mb-6"
+            className="relative"
           >
-            <Image
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
-              alt="M. Jefri Agiansyah"
-              fill
-              className="rounded-2xl object-cover border-2 border-primary-500/50"
-            />
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            </div>
-          </motion.div>
-
-          {/* Name and Title */}
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-white mb-1">
-              M. Jefri Agiansyah
-            </h3>
-            <p className="text-primary-400 text-sm font-medium">
-              Full Stack Developer
-            </p>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="text-center">
-              <div className="text-lg font-bold text-white">50+</div>
-              <div className="text-xs text-gray-400">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg font-bold text-white">3+</div>
-              <div className="text-xs text-gray-400">Years</div>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1">
-                <Star size={12} className="text-yellow-400 fill-current" />
-                <span className="text-lg font-bold text-white">4.9</span>
+            <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1">
+              <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-white text-2xl font-bold">
+                JD
               </div>
-              <div className="text-xs text-gray-400">Rating</div>
             </div>
-          </div>
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
+          </motion.div>
+        </div>
 
-          {/* Info */}
-          <div className="space-y-3 mb-6">
-            <div className="flex items-center gap-3 text-sm text-gray-300">
-              <MapPin size={16} className="text-primary-400" />
-              <span>Indonesia</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-300">
-              <Calendar size={16} className="text-primary-400" />
-              <span>Available for work</span>
-            </div>
+        {/* Profile Info */}
+        <div className="text-center mb-6">
+          <h3 className="text-xl font-bold text-white mb-1">John Doe</h3>
+          <p className="text-blue-300 text-sm mb-2">Full Stack Developer</p>
+          <div className="flex items-center justify-center text-gray-300 text-xs">
+            <MapPin className="w-3 h-3 mr-1" />
+            <span>San Francisco, CA</span>
           </div>
+        </div>
 
-          {/* Skills Tags */}
-          <div className="flex flex-wrap gap-2">
-            {['React', 'Laravel', 'Flutter'].map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1 text-xs bg-primary-500/20 text-primary-300 rounded-full border border-primary-500/30"
-              >
-                {skill}
-              </span>
-            ))}
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="text-center">
+            <div className="text-lg font-bold text-white">50+</div>
+            <div className="text-xs text-gray-300">Projects</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-white">3+</div>
+            <div className="text-xs text-gray-300">Years</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-white">100+</div>
+            <div className="text-xs text-gray-300">Clients</div>
+          </div>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex justify-center space-x-4 mb-6">
+          {[
+            { icon: Github, href: '#', color: 'hover:text-gray-300' },
+            { icon: Linkedin, href: '#', color: 'hover:text-blue-400' },
+            { icon: Mail, href: '#', color: 'hover:text-red-400' },
+          ].map(({ icon: Icon, href, color }, index) => (
+            <motion.a
+              key={index}
+              href={href}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className={`text-gray-400 ${color} transition-colors duration-200`}
+            >
+              <Icon className="w-5 h-5" />
+            </motion.a>
+          ))}
+        </div>
+
+        {/* Status */}
+        <div className="text-center">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+            Available for work
           </div>
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
-
-export default ProfileCard
