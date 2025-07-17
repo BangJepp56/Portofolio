@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Home, User, Code, Briefcase, Mail, Settings } from 'lucide-react'
+import { Home, User, Code, Briefcase, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -17,7 +17,6 @@ const dockItems: DockItem[] = [
   { icon: <Code size={20} />, label: 'Skills', href: '#skills' },
   { icon: <Briefcase size={20} />, label: 'Portfolio', href: '#portfolio' },
   { icon: <Mail size={20} />, label: 'Contact', href: '#contact' },
-  { icon: <Settings size={20} />, label: 'Admin', href: '/admin' },
 ]
 
 const Dock = () => {

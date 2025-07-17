@@ -1,7 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Skill } from '@/types/database'
+
+interface Skill {
+  id: string
+  category: string
+  name: string
+  description: string
+  technologies: string[]
+  icon: string
+}
 
 interface SkillCardProps {
   skill: Skill
@@ -10,13 +18,7 @@ interface SkillCardProps {
 
 const SkillCard = ({ skill, icon }: SkillCardProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className="card group"
-    >
+    <div className="card group">
       <div className="text-primary-500 mb-4 group-hover:text-primary-400 transition-colors">
         {icon}
       </div>
@@ -39,7 +41,7 @@ const SkillCard = ({ skill, icon }: SkillCardProps) => {
           </span>
         ))}
       </div>
-    </motion.div>
+    </div>
   )
 }
 

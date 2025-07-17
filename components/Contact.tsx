@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Instagram, MessageCircle, Github, Send } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,21 +19,12 @@ const Contact = () => {
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
-    try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert([formData])
-
-      if (error) throw error
-
+    // Simulate form submission
+    setTimeout(() => {
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      setSubmitStatus('error')
-    } finally {
       setIsSubmitting(false)
-    }
+    }, 2000)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -74,14 +64,20 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-dark-800/50">
       <div className="container-custom">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Get in Touch
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Let's discuss your next project or just say hello
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
@@ -208,11 +204,15 @@ const Contact = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactInfo.map((contact, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={contact.href}
                   target={contact.href.startsWith('http') ? '_blank' : undefined}
                   rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                   className="card hover:border-primary-500/50 transition-all duration-300 block"
                 >
                   <div className="flex items-center gap-4">
@@ -228,7 +228,7 @@ const Contact = () => {
                       </p>
                     </div>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>

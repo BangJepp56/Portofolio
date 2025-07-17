@@ -3,8 +3,20 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Project } from '@/types/database'
 import { ExternalLink, Github } from 'lucide-react'
+
+interface Project {
+  id: string
+  title: string
+  description: string
+  image_url: string
+  project_url: string | null
+  github_url: string | null
+  technologies: string[]
+  featured: boolean
+  created_at: string
+  updated_at: string
+}
 
 interface ProjectCardProps {
   project: Project
@@ -13,13 +25,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, featured = false }: ProjectCardProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className={`card group ${featured ? 'lg:col-span-1' : ''}`}
-    >
+    <div className={`card group ${featured ? 'lg:col-span-1' : ''}`}>
       <div className="relative overflow-hidden rounded-xl mb-6">
         <Image
           src={project.image_url}
@@ -76,7 +82,7 @@ const ProjectCard = ({ project, featured = false }: ProjectCardProps) => {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
